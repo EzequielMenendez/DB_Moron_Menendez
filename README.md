@@ -51,6 +51,14 @@ Entrega académica para el curso de Base de Datos II. Sistema de gestión de una
 - `docs/parte4_competencia_tp4.md`: registro de competencia, ganó baseline con índices (1219ms).
 - `docs/duia_tp4.md`: declaración de uso de IA (5 usos).
 
+### Semana 5 - Índices, Vistas y Vistas Materializadas
+- `db/sql/11_tp5_indices_mediciones.sql`: tres mediciones antes/después, índices aceptados y benchmark reversible de escritura.
+- `db/sql/12_tp5_views_materializadas.sql`: tres vistas de reporte, una vista de mínimo privilegio y la vista materializada mensual.
+- `db/sql/13_tp5_verificacion_vistas.sql`: equivalencia mediante `EXCEPT` y medición de la vista materializada.
+- `.kiro/specs/tp5_indices_vistas/`: requirements, diseño y tareas del TP.
+- `docs/informe_indices_vistas_tp5.md`: protocolo de reproducción y estado de evidencia.
+- `docs/duia_tp5.md`: bitácora de asistencia de IA y límites de verificación.
+
 ## Requisitos previos
 
 - PostgreSQL 18.x con `psql`, `createdb`, `pg_dump` y `pg_restore` en `PATH`.

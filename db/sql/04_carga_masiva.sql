@@ -39,7 +39,9 @@ SELECT
     (ARRAY['EFECTIVO'::forma_pago_enum, 'TARJETA'::forma_pago_enum, 'TRANSFERENCIA'::forma_pago_enum])[floor(random() * 3 + 1)]
 FROM generate_series(1, 200000) AS s;
 
--- Detalles de pedidos (~400.000)
+-- Detalles de pedidos (600.000). La serie depende de cada pedido para
+-- distribuir las ventas entre productos; una subconsulta LATERAL sin esa
+-- correlacion puede evaluarse una sola vez y concentrar toda la carga.
 INSERT INTO detalle_pedido (id_pedido, id_producto, cantidad, precio_unitario)
 SELECT
     p.id_pedido,
@@ -47,12 +49,9 @@ SELECT
     (floor(random() * 5 + 1))::int,
     pr.precio_lista
 FROM pedido p
-CROSS JOIN LATERAL (
-    SELECT id_producto, precio_lista
-    FROM producto
-    ORDER BY random()
-    LIMIT (floor(random() * 3 + 1))::int
-) pr;
+CROSS JOIN LATERAL generate_series(1, 3) AS linea(numero)
+JOIN producto pr ON pr.id_producto =
+    (((p.id_pedido * 104729 + linea.numero * 7919 - 1) % 50000) + 1);
 
 COMMIT;
 

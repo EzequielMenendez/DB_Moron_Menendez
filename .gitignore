@@ -16,6 +16,7 @@ db/backups/*.backup
 *.swo
 *~
 *.sql~
+/tmp/
 .vscode/
 .idea/
 .DS_Store

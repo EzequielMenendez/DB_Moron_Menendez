@@ -17,6 +17,9 @@ db/backups/*.backup
 *~
 *.sql~
 /tmp/
+
+# Informes PDF generados para entrega local
+/output/pdf/
 .vscode/
 .idea/
 .DS_Store

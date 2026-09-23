@@ -59,6 +59,13 @@ Entrega académica para el curso de Base de Datos II. Sistema de gestión de una
 - `docs/informe_indices_vistas_tp5.md`: protocolo de reproducción y estado de evidencia.
 - `docs/duia_tp5.md`: bitácora de asistencia de IA y límites de verificación.
 
+### Modelado, PL/pgSQL y Borrado Lógico
+- `docs/modelo_er.md`: modelo ER (entidades, atributos, claves, cardinalidad, participación) con diagrama Mermaid.
+- `docs/er_a_relacional.md`: conversión ER → relacional (1:N con FK, N:M con tabla intermedia `detalle_pedido`).
+- `docs/normalizacion.md`: dependencias funcionales y verificación hasta 3FN/BCNF.
+- `db/sql/14_plpgsql_funciones_triggers.sql`: función `fn_total_pedido`, procedimiento `sp_registrar_pedido` y trigger `trg_detalle_producto_activo` (regla de negocio: no facturar productos inactivos).
+- `docs/borrado_logico.md`: patrón soft delete (`activo`), impacto en consultas e índices parciales con evidencia EXPLAIN.
+
 ## Requisitos previos
 
 - PostgreSQL 18.x con `psql`, `createdb`, `pg_dump` y `pg_restore` en `PATH`.

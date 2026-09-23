@@ -38,6 +38,8 @@ WHERE dp.id_producto = (SELECT min(id_producto) FROM producto)
 ORDER BY p.fecha DESC;
 
 \echo '=== Escritura ANTES: 500 detalles reversibles ==='
+-- Filtra activo = TRUE: el trigger trg_detalle_producto_activo (script 14)
+-- prohíbe facturar productos inactivos, regla de negocio del esquema.
 BEGIN;
 EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
 WITH pedido_benchmark AS (
@@ -52,6 +54,7 @@ FROM pedido_benchmark b
 CROSS JOIN (
     SELECT id_producto, precio_lista
     FROM producto
+    WHERE activo = TRUE
     ORDER BY id_producto
     LIMIT 500
 ) pr;
@@ -118,6 +121,7 @@ FROM pedido_benchmark b
 CROSS JOIN (
     SELECT id_producto, precio_lista
     FROM producto
+    WHERE activo = TRUE
     ORDER BY id_producto
     LIMIT 500
 ) pr;
